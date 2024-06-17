@@ -6,6 +6,11 @@ require('dotenv').config()
 const app = express()
 const PORT = process.env.PORT || 4000
 
-app.listen(PORT, () => {
-    console.log(`Listening on: ${PORT}`)
-})
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(`Connected and Listening on: ${PORT}`)
+        })
+    })
+    .catch((err) => console.log(err))
+
