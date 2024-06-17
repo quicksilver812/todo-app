@@ -1,6 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 
+const routes = require('./routes/ToDoRoutes')
+
 require('dotenv').config()
 
 const app = express()
@@ -13,4 +15,6 @@ mongoose.connect(process.env.MONGO_URI)
         })
     })
     .catch((err) => console.log(err))
+
+app.use(routes)
 
